@@ -1,0 +1,36 @@
+version: "3"
+
+# All available services
+services:
+
+  postgres:
+    container_name: "sql-workshop_postgres"
+    restart: "always"
+    image: postgres
+    env_file: ./docker/postgres/.env
+    volumes:
+      - ./docker/postgres/db:/var/lib/postgresql/data
+      - ./work:/opt/work
+    ports:
+      - 5432:5432
+
+  metabase:
+    container_name: "sql-workshop_metabase"
+    restart: "always"
+    image: metabase/metabase
+    volumes:
+      - ./docker/metabase/db:/metabase.db:cached
+    ports:
+      - 3000:3000
+
+  jupyter:
+    container_name: "sql-workshop_jupyter"
+    env_file: ./work/.env
+    build:
+      context: ./docker/jupyter
+      dockerfile: ./Dockerfile
+    restart: always
+    volumes:
+      - ./work:/opt/work
+    ports:
+      - "8888:8888"

@@ -1,0 +1,5 @@
+work
+.env
+*.zip
+docker/metabase/db
+docker/postgres/db
