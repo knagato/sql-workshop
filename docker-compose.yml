@@ -7,7 +7,7 @@ services:
     container_name: "sql-workshop_postgres"
     restart: "always"
     image: postgres
-    env_file: ./docker/postgres/.env
+    env_file: ./work/.env
     volumes:
       - ./docker/postgres/db:/var/lib/postgresql/data
       - ./work:/opt/work
