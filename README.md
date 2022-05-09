@@ -65,11 +65,11 @@ docker-compose up -d
 
 起動が完了したら、ブラウザで [http://localhost:8888/](http://localhost:8888/) にアクセスし、Jupyter Notebookを開きます。初回アクセス時は、上記手順で設定した`NOTEBOOK_PASSWORD`の入力を求められます。
 
-ログインが完了したら、[00_Setup](http://localhost:8888/tree/00_Setup)フォルダ内のノートを開き、手順に従ってデータベースのセットアップをおこなってください。
+ログインが完了したら、[00_Setup](/work/00_Setup)フォルダ内のノートを開き、手順に従ってデータベースのセットアップをおこなってください。
 
-[01_Tutorial](http://localhost:8888/tree/01_Tutorial)フォルダには、セットアップしたデータベースに対してSQLで基本的な操作をおこなうためのサンプルが含まれています。
+[01_Tutorial](/work/01_Tutorial)フォルダには、セットアップしたデータベースに対してSQLで基本的な操作をおこなうためのサンプルが含まれています。
 
-[02_Exercise](http://localhost:8888/tree/02_Exercise)フォルダには、3種類のレコメンドを実装する課題と、課題提出用のテンプレートが含まれています。
+[02_Exercise](/work/02_Exercise)フォルダには、3種類のレコメンドを実装する課題と、課題提出用のテンプレートが含まれています。
 
 ### Metabase
 
