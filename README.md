@@ -67,9 +67,9 @@ docker-compose up -d
 
 ログインが完了したら、[00_Setup](http://localhost:8888/tree/00_Setup)フォルダ内のノートを開き、手順に従ってデータベースのセットアップをおこなってください。
 
-[01_Tutorial](http://localhost:8888/tree/01_Tutorial)フォルダには、セットアップしたデータベースに対してSQLで簡単な集計をおこなうためのサンプルや課題が含まれています。
+[01_Tutorial](http://localhost:8888/tree/01_Tutorial)フォルダには、セットアップしたデータベースに対してSQLで基本的な操作をおこなうためのサンプルが含まれています。
 
-[02_Exercise](http://localhost:8888/tree/02_Exercise)フォルダには、3種類のレコメンドを実装する課題が含まれています。
+[02_Exercise](http://localhost:8888/tree/02_Exercise)フォルダには、3種類のレコメンドを実装する課題と、課題提出用のテンプレートが含まれています。
 
 ### Metabase
 
