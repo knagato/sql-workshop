@@ -22,21 +22,21 @@
 まず、本レポジトリを作業用環境にダウンロードします。
 
 ```bash
-git clone git@github.com:knagato/sql-workshop.git
-cd sql-workshop
+$ git clone git@github.com:knagato/sql-workshop.git
+$ cd sql-workshop
 ```
 
 Jupyter Notebook と PostgreSQL にアクセスするためのパスワードを設定します。
 以下のコマンドで、`.env.sample`ファイルをコピーして`.env`ファイルを作成します。
 
 ```bash
-cp work/.env.sample work/.env
+$ cp work/.env.sample work/.env
 ```
 
 `.env`ファイルをエディタで開き、`NOTEBOOK_PASSWORD`と`POSTGRES_PASSWORD`に任意のパスワードを記入します。
 
 ```bash
-vi work/.env
+$ vi work/.env
 ```
 
 work/.env
@@ -50,15 +50,40 @@ kaggle.comの [Anime Recommendation Database 2020](https://www.kaggle.com/datase
 下記コマンドで、`work/input_data`ディレクトリにデータセットのcsvファイル群を解凍します。
 
 ```bash
-unzip archive.zip -d work/input_data
+$ unzip archive.zip -d work/input_data
+
+$ ls work/input_data
+ anime.csv   anime_with_synopsis.csv   animelist.csv  'html folder'   rating_complete.csv   watching_status.csv
+```
+
+---
+
+※ 解凍したCSVファイルのうち、animelist.csv(1億行, 1.9GB), rating_complete.csv(5700万行, 781MB)はサイズが大きいため、環境によっては後のデータベースへのインポートができなかったり、SQLの実行に時間がかかったりする可能性があります。そのような場合は、下記のようなコマンドを用いてデータを削減して利用しても構いません。
+
+```bash
+$ cd work/input_data
+
+# animelist.csvをバックアップ
+$ mv animelist.csv animelist.csv.bk
+
+# animelist.csv.bkの行数を確認（約1億行）
+$ wc -l animelist.csv.bk
+109224748 animelist.csv.bk
+
+# animelist.csv.bkの先頭1000万行だけをanimelist.csvとして切り出し
+$ head -n 10000000 animelist.csv.bk > animelist.csv
+
+# animelist.csvの行数を確認
+$ wc -l animelist.csv
+10000000 animelist.csv
 ```
 
 ## Start
 
-下記コマンドで、Dockerコンテナを起動します。
+docker-compose.ymlファイルのあるルートディレクトリで、下記コマンドを実行しDockerコンテナを起動します。
 
 ```bash
-docker-compose up -d
+$ docker-compose up -d
 ```
 
 ### Jupyter Notebook
@@ -94,5 +119,5 @@ Jupyter Notebookでデータベースのセットアップを終えたあと、[
 作業を終了するときは、下記コマンドでDockerコンテナを停止してください。
 
 ```bash
-docker-compose down
+$ docker-compose down
 ```
