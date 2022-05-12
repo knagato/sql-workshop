@@ -121,3 +121,45 @@ Jupyter Notebookでデータベースのセットアップを終えたあと、[
 ```bash
 $ docker-compose down
 ```
+### Remove
+
+すべてのデータセットをインポートすると、PostgreSQLが使用するデータサイズは13GB超になります。
+
+ディスクサイズが逼迫した場合は、下記の手順でデータの一括削除が可能です。
+
+使用中ディスクサイズの確認：
+
+```bash
+$ docker system df -v
+
+Images space usage:
+
+REPOSITORY                                                       TAG                      IMAGE ID       CREATED         SIZE      SHARED SIZE   UNIQUE SIZE   CONTAINERS
+sql-workshop_jupyter                                             latest                   5285597c4b09   3 days ago      3.081GB   3.08GB        1.416MB       1
+...
+
+Local Volumes space usage:
+VOLUME NAME                                                        LINKS     SIZE
+sql-workshop_postgres-data                                         1         13.12GB
+sql-workshop_metabase-data                                         1         536.8kB
+...
+```
+
+コンテナの削除：
+
+```bash
+$ docker-compose rm
+```
+
+ボリュームの削除：
+
+```bash
+$ docker volume rm sql-workshop_postgres-data
+$ docker volume rm sql-workshop_metabase-data
+```
+
+イメージの削除：
+
+```bash
+$ docker image rm sql-workshop_jupyter
+```

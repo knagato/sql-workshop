@@ -9,7 +9,7 @@ services:
     image: postgres
     env_file: ./work/.env
     volumes:
-      - ./docker/postgres/db:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
       - ./work:/opt/work
     ports:
       - 5432:5432
@@ -19,9 +19,11 @@ services:
     restart: "always"
     image: metabase/metabase
     volumes:
-      - ./docker/metabase/db:/metabase.db:cached
+      - metabase-data:/metabase.db:cached
     ports:
       - 3000:3000
+    depends_on:
+      - postgres
 
   jupyter:
     container_name: "sql-workshop_jupyter"
@@ -34,3 +36,9 @@ services:
       - ./work:/opt/work
     ports:
       - "8888:8888"
+    depends_on:
+      - postgres
+
+volumes:
+    postgres-data:
+    metabase-data:
