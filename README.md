@@ -45,23 +45,37 @@ NOTEBOOK_PASSWORD=<Your Password for Jupyter Notebook>
 POSTGRES_PASSWORD=<Your Password for Postgres User>
 ```
 
-kaggle.comの [Anime Recommendation Database 2020](https://www.kaggle.com/datasets/hernan4444/anime-recommendation-database-2020) ページにブラウザでアクセスし、アカウント登録またはログインをおこない「Download」ボタンから`archive.zip`ファイルを作業ディレクトリにダウンロードします。
+### Data Download
 
-下記コマンドで、`work/input_data`ディレクトリにデータセットのcsvファイル群を解凍します。
+[kaggle.conの公式サイト](https://www.kaggle.com/)にアクセスし、アカウント登録またはログインをおこなっておきます。
+
+次に、下記リストのデータセットのページにアクセスし、`Download`ボタンをクリックしてデータセットをダウンロードします。ダウンロードしたデータセット(`archive.zip`)は、各データセットに対応するディレクトリに配置してください。
+
+| データセット | 保存ディレクトリ |
+| --- | --- |
+| [Anime Recommendation Database 2020](https://www.kaggle.com/datasets/hernan4444/anime-recommendation-database-2020) | `work/input/anime` |
+| [eCommerce behavior data from multi category store](https://www.kaggle.com/datasets/mkechinov/ecommerce-behavior-data-from-multi-category-store) | `work/input/ecommerce` |
+
+
+下記コマンドで、`work/input`ディレクトリ配下に保存したデータセットを解凍します。
 
 ```bash
-$ unzip archive.zip -d work/input_data
+$ unzip work/input/anime/archive.zip -d work/input/anime/
+$ unzip work/input/ecommerce/archive.zip -d work/input/ecommerce/
 
-$ ls work/input_data
- anime.csv   anime_with_synopsis.csv   animelist.csv  'html folder'   rating_complete.csv   watching_status.csv
+$ ls work/input/anime
+ README.md   anime.csv   anime_with_synopsis.csv   animelist.csv   archive.zip  'html folder'   rating_complete.csv   watching_status.csv
+
+$ ls work/input/ecommerce
+ 2019-Nov.csv  2019-Oct.csv  README.md  archive.zip
 ```
 
 ---
 
-※ 解凍したCSVファイルのうち、animelist.csv(1億行, 1.9GB), rating_complete.csv(5700万行, 781MB)はサイズが大きいため、環境によっては後のデータベースへのインポートができなかったり、SQLの実行に時間がかかったりする可能性があります。そのような場合は、下記のようなコマンドを用いてデータを削減して利用しても構いません。
+※ 解凍したCSVファイルのうち、anime/animelist.csv(1億行, 1.9GB), anime/rating_complete.csv(5700万行, 781MB), ecommerce/2019-Nov.csv(6.7億行, 8.4GB), ecommerce/2019-Oct.csv(4.2億行, 5.3GB) はサイズが大きいため、環境によっては後のデータベースへのインポートができなかったり、SQLの実行に時間がかかったりする可能性があります。そのような場合は、下記のようなコマンドを用いてデータを削減して利用しても構いません。
 
 ```bash
-$ cd work/input_data
+$ cd work/input/anime
 
 # animelist.csvをバックアップ
 $ mv animelist.csv animelist.csv.bk
@@ -94,7 +108,7 @@ $ docker-compose up -d
 
 [01_Tutorial](/work/01_Tutorial)フォルダには、セットアップしたデータベースに対してSQLで基本的な操作をおこなうためのサンプルが含まれています。
 
-[02_Exercise](/work/02_Exercise)フォルダには、3種類のレコメンドを実装する課題と、課題提出用のテンプレートが含まれています。
+[02_Exercise](/work/02_Exercise)フォルダには、各ワークショップの日付ごとの課題ノートを用意しています。
 
 ### Metabase
 
@@ -123,7 +137,7 @@ $ docker-compose down
 ```
 ### Remove
 
-すべてのデータセットをインポートすると、PostgreSQLが使用するデータサイズは13GB超になります。
+すべてのデータセットをインポートすると、PostgreSQLが使用するデータサイズは28GB超になります。
 
 ディスクサイズが逼迫した場合は、下記の手順でデータの一括削除が可能です。
 
@@ -140,7 +154,7 @@ sql-workshop_jupyter                                             latest         
 
 Local Volumes space usage:
 VOLUME NAME                                                        LINKS     SIZE
-sql-workshop_postgres-data                                         1         13.12GB
+sql-workshop_postgres-data                                         1         28.66GB
 sql-workshop_metabase-data                                         1         536.8kB
 ...
 ```
