@@ -2,11 +2,6 @@
 
 パブリックデータとして公開されているデータセットを題材として、データ分析領域で用いられているSQLについて学ぶワークショップのためのレポジトリです。
 
-サンプルのデータセットには、kaggle.comの [Anime Recommendation Database 2020](https://www.kaggle.com/datasets/hernan4444/anime-recommendation-database-2020) を使用します。
-このデータセットには、世界最大級のアニメ・マンガコミュニティである [MyAnimeList](https://myanimelist.net/) から取得された、17,562件のアニメデータと、325,770人のユーザによるアニメの評価データが含まれています。
-
-このデータセットを用いて、SQLによるデータ加工やデータ分析手法を学び、基本的なレコメンドシステムの構築を実践します。
-
 ## Setup
 
 本ワークショップでは、Dockerを用いてローカル環境にPostgreSQL, Jupyter Notebook, Metabaseを構築し、データの格納や分析、可視化をおこないます。
@@ -16,6 +11,35 @@
 [Jupyter Notebook](https://jupyter.org/) は、ブラウザ上で利用可能なデータ分析のためのプログラミング実行環境です。PostgreSQLの拡張機能を導入することで、直接SQLやPostgreSQLコマンドの実行をインタラクティブにおこない、結果を保存したり共有したりすることができます。
 
 [Metabase](https://www.metabase.com/) は、オープンソースのデータ可視化・BIツールのひとつです。PostgreSQLを対象データベースとして、SQLの補完機能や、出力データの可視化機能を備えています。簡単なデータ集計や加工であれば、SQLを使わずGUI上の操作でも実現可能です。
+
+### Requirements
+
+事前にDockerおよびDocker Composeをインストールしてください。Docker Desktopをインストールすると、Docker Composeも同時にインストールされます。
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
+
+#### Windows
+
+- [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/)
+
+#### Mac
+
+- [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/install/)
+
+#### Linux
+
+Docker Desktopを用いない場合、Docker EngineおよびDocker Composeをそれぞれインストールしてください。
+
+- [Docker Engine](https://docs.docker.com/engine/install/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+Linuxの場合、Docker公式のConvenience Scriptを用いてインストールすることもできます。
+
+```bash
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sh get-docker.sh
+```
 
 ### Prepare
 
