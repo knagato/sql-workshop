@@ -47,6 +47,9 @@ $ sh get-docker.sh
 
 ```bash
 $ git clone git@github.com:knagato/sql-workshop.git
+# or
+# git clone https://github.com/knagato/sql-workshop.git
+
 $ cd sql-workshop
 ```
 
