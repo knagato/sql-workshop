@@ -17,7 +17,7 @@ services:
   metabase:
     container_name: "sql-workshop_metabase"
     restart: "always"
-    image: metabase/metabase
+    image: metabase/metabase:v0.44.6
     volumes:
       - metabase-data:/metabase.db:cached
     ports:
